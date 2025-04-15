@@ -3,18 +3,19 @@ window.onload = () => {
     setupEmailHoverAndCopy();
     setupThemeToggle();
     showWelcomeToast();
-  };
+    showRandomQuote();
+};
   
-  function initializeDateTimeUpdater() {
+function initializeDateTimeUpdater() {
     const dateTimeEl = document.getElementById("dateTime");
     const update = () => {
       dateTimeEl.textContent = `🕒 ${new Date().toLocaleString()}`;
     };
     update();
     setInterval(update, 1000);
-  }
+}
   
-  function setupEmailHoverAndCopy() {
+function setupEmailHoverAndCopy() {
     const emailLink = document.getElementById("emailLink");
   
     emailLink.addEventListener("mouseover", () => {
@@ -37,16 +38,16 @@ window.onload = () => {
           alert("Failed to copy email.");
         });
     });
-  }
+}
   
-  function setupThemeToggle() {
+function setupThemeToggle() {
     const btn = document.getElementById("toggleThemeBtn");
     btn.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
     });
-  }
+}
   
-  function showWelcomeToast() {
+function showWelcomeToast() {
     const toast = document.createElement("div");
     toast.className = "toast align-items-center text-bg-info border-0 show";
     toast.style.position = "fixed";
@@ -65,5 +66,25 @@ window.onload = () => {
     setTimeout(() => {
       bootstrap.Toast.getOrCreateInstance(toast).hide();
     }, 4000);
-  }
+}
+  
+function showRandomQuote() {
+    const quotes = [
+      "Code is like humor. When you have to explain it, it’s bad.",
+      "Fix the cause, not the symptom.",
+      "Make it work, make it right, make it fast.",
+      "Before software can be reusable it first has to be usable.",
+      "Programs must be written for people to read."
+    ];
+  
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    const container = document.getElementById("quoteContainer");
+  
+    const quoteEl = document.createElement("div");
+    quoteEl.className = "alert alert-secondary mx-auto";
+    quoteEl.style.maxWidth = "400px";
+    quoteEl.textContent = `💡 ${quote}`;
+  
+    container.appendChild(quoteEl);
+}  
   
